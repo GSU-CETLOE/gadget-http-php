@@ -75,7 +75,10 @@ class Client implements ClientInterface
         );
 
         if (count($cookies) > 0) {
-            $request = $request->withHeader('Cookie', implode('; ', $cookies));
+            $request = $request->withHeader('Cookie', implode('; ', array_map(
+                fn(Cookie $cookie): string => $cookie->getName() . '=' . ($cookie->getValue() ?? ''),
+                $cookies
+            )));
         }
 
         return $request;

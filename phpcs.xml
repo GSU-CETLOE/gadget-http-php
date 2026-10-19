@@ -10,4 +10,5 @@
     <arg name="extensions" value="php"/>
     <file>bundle</file>
     <file>src</file>
+    <file>tests</file>
 </ruleset>

@@ -1,41 +1,46 @@
 {
-  "name": "mjfk23/gadget-http",
+  "name": "gsu-cetloe/gadget-http-php",
   "description": "Gadget library for working with HTTP",
   "type": "library",
   "keywords": [],
-  "homepage": "https://github.com/mjfk23/gadget-http",
+  "homepage": "https://github.com/GSU-CETLOE/gadget-http-php",
   "license": "MIT",
   "authors": [
     {
-      "name": "Melody Kimball",
-      "role": "lead"
+      "name": "Jeb Barger",
+      "role": "Application Developer"
     }
   ],
-  "support": {
-    "issues": "https://github.com/mjfk23/gadget-http/issues",
-    "wiki": "https://github.com/mjfk23/gadget-http/wiki",
-    "source": "https://github.com/mjfk23/gadget-http"
-  },
   "require": {
-    "php": "^8.1",
-    "firebase/php-jwt": "^6.10",
+    "php": "8.1.*",
+    "gsu-cetloe/gadget-cache-php": "^1.0",
+    "gsu-cetloe/gadget-core-php": "^1.0",
+    "gsu-cetloe/symfony-bundle": "^1.0",
     "guzzlehttp/guzzle": "^7.9",
     "guzzlehttp/psr7": "^2.7",
-    "mjfk23/gadget-cache": "^2.0",
-    "mjfk23/gadget-core": "^2.0",
-    "mjfk23/psr-http-contracts": "^1.0",
-    "mjfk23/symfony-bundle": "^1.0",
-    "php-http/discovery": "^1.19"
+    "php-http/discovery": "^1.19",
+    "psr/http-client": "^1.0",
+    "psr/http-factory": "^1.1",
+    "psr/http-message": "^2.0",
+    "psr/http-server-handler": "^1.0",
+    "psr/http-server-middleware": "^1.0"
   },
   "require-dev": {
     "phpstan/phpstan": "^2.0",
     "phpstan/phpstan-strict-rules": "^2.0",
     "phpstan/extension-installer": "^1.4",
-    "squizlabs/php_codesniffer": "^3.10"
+    "phpunit/phpunit": "^10.5",
+    "squizlabs/php_codesniffer": "^3.10",
+    "symfony/cache": "6.4.*"
   },
   "autoload": {
     "psr-4": {
       "Gadget\\Http\\": ["src/", "bundle/"]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gadget\\Http\\Tests\\": "tests/"
     }
   },
   "config": {
@@ -43,12 +48,21 @@
       "phpstan/extension-installer": true,
       "php-http/discovery": true
     },
+    "platform": {
+      "php": "8.1.0"
+    },
     "sort-packages": true,
     "optimize-autoloader": true,
     "apcu-autoloader": true
   },
   "scripts": {
     "phpcs": "vendor/bin/phpcs",
-    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+    "test": "vendor/bin/phpunit",
+    "check": [
+      "@phpcs",
+      "@phpstan",
+      "@test"
+    ]
   }
 }
